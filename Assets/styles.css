@@ -1,4 +1,23 @@
+/* Font Styles */
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 100%;
+}
 
+h1{
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+h2{
+    font-size: 2rem;
+    text-align: center;
+}
+
+h3{
+    font-size: 1.5rem;
+    text-align: center;
+}
 
 /* Positioning CSS */
 
@@ -38,6 +57,7 @@
 }
 
 #fiveDayCards .card{
-    width: 12%;
+    width: 18%;
     margin: 1%;
 }
+
