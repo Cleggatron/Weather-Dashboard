@@ -7,23 +7,36 @@
 h1{
     font-size: 2.5rem;
     text-align: center;
+    font-weight: bold;
 }
 
 h2{
     font-size: 2rem;
     text-align: center;
+    font-weight: bold;
 }
 
 h3{
     font-size: 1.5rem;
     text-align: center;
+    font-weight: bold;
 }
 
 /* Positioning CSS */
+header{
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+h1, h2, h3{
+    margin: 0;
+}
 
 #mainContent {
     display: flex;
     justify-content: center;
+    min-height: 100%;
 }
 
 #searchbar {
@@ -57,7 +70,64 @@ h3{
 }
 
 #fiveDayCards .card{
-    width: 18%;
+    width: 16%;
     margin: 1%;
+    padding: 1%;
+}
+
+aside{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1%;
+    margin-bottom: 30px;
+}
+
+aside h2{
+    margin-bottom: 20px;
+}
+aside input{
+    margin-bottom: 10px;
+    width: 95%;
+    height: 30px;
+    padding: 0;
+}
+
+aside button{
+    width: 95%;
+    height: 30px;
+    align-self: center;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+
+/* Visual Stylings */
+body{
+    background-color: lightgray;
+}
+
+header{
+    background-image: linear-gradient(to right, steelblue, navy );
+    color: white;
+}
+
+aside{
+    border-right: solid 2px black;
+}
+
+
+.card{
+    background-color: slateblue;
+    color: white;
+    border-radius: 5px;
+}
+
+aside input, aside button{
+    border-radius: 5px;
+}
+
+#searchBox{
+    border-bottom:  solid 2px black;
 }
 
