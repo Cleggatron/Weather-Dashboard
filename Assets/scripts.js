@@ -1,5 +1,7 @@
 var APIKey = "9848bfb6d8989dcb1be0073be9867f89";
 
+var GlobalData;
+
 
 //var currentDayUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`
 //Seven Day API `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&appid=${APIKey}`
@@ -56,12 +58,14 @@ function searchAPI(destination){
                 var lat = data.coord.lat;
                 var lon = data.coord.lon
                 
+                //in the API I could not find 1 data source that had everything I needed and had easy acccess.
+                //Therefore I am pulling the latitude/longitude from the 1st dataset, and making a new fetch off that
                 var sevenDayUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&units=metric&appid=${APIKey}`
                 fetch(sevenDayUrl)
                 .then(function(response2){
                     response2.json()
                     .then(function (data2){
-                        console.log(data2);
+                        populateData(data2);
                     })
                 })
                 //build my populate functions here.
@@ -74,3 +78,32 @@ function searchAPI(destination){
     })
 }
 
+function populateData (dataObject){
+    var dataSet = dataObject;
+
+    //get rid once done
+    GlobalData = dataSet
+    console.log(GlobalData);
+    
+    
+    var tempSpanEls = document.querySelectorAll(".temp");
+    var windSpanEls = document.querySelectorAll(".wind");
+    var humiditySpanEls = document.querySelectorAll(".humidity");
+    var dateHeaderEls = document.querySelectorAll(".date");
+    var uvIndexEl = document.querySelector("#uvIndex");
+    
+
+    for(var i =  0; i < 6; i++){
+        //sort out the dates for the cards
+        var headerDate = moment.unix(dataSet.daily[i].dt).format("DD/MM/YY");
+        if(i === 0){
+            uvIndexEl.textContent = dataSet.current.uvi 
+        }
+
+        //push content to the cards
+        dateHeaderEls[i].textContent = headerDate; 
+        tempSpanEls[i].textContent = dataSet.daily[i].temp.day + "°C";
+        windSpanEls[i].textContent = dataSet.daily[i].wind_speed + "km/h";
+        humiditySpanEls[i].textContent = dataSet.daily[i].humidity + "%";
+    }
+}
