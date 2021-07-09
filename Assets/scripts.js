@@ -1,7 +1,7 @@
 var APIKey = "9848bfb6d8989dcb1be0073be9867f89";
 
 
-var currentDayUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`
+//var currentDayUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`
 //Seven Day API `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&appid=${APIKey}`
 
 var searchInputEl = document.getElementById("userInput");
@@ -32,14 +32,36 @@ searchButtonEl.addEventListener("click", startSearch);
 
 function startSearch(event){
     event.preventDefault();
-    var city = searchInputEl.value.trim();
+    var userInput = searchInputEl.value.trim();
     //handle no user input
-    if(city === ""){
+    if(userInput === ""){
         alert("You have not input any destination!")
         return;
     }
 
-    searchAPI(city);
+    searchAPI(userInput);
     //update search hstory here
     searchInputEl.value = "";
+}
+
+function searchAPI(destination){
+    var city = destination;
+    var currentDayApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
+
+    fetch(currentDayApiUrl)
+    .then(function (response){
+        if(response.ok){
+            console.log(response)
+            response.json()
+            .then(function (data){
+                console.log(data)
+
+                //build my populate functions here.
+            });
+
+        //handle errrors
+        } else{
+            alert("Error: " + response.statusText);
+        }
+    })
 }
