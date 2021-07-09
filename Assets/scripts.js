@@ -46,16 +46,24 @@ function startSearch(event){
 
 function searchAPI(destination){
     var city = destination;
-    var currentDayApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
+    var currentDayApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`;
 
     fetch(currentDayApiUrl)
     .then(function (response){
         if(response.ok){
-            console.log(response)
             response.json()
             .then(function (data){
-                console.log(data)
-
+                var lat = data.coord.lat;
+                var lon = data.coord.lon
+                
+                var sevenDayUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&units=metric&appid=${APIKey}`
+                fetch(sevenDayUrl)
+                .then(function(response2){
+                    response2.json()
+                    .then(function (data2){
+                        console.log(data2);
+                    })
+                })
                 //build my populate functions here.
             });
 
@@ -65,3 +73,4 @@ function searchAPI(destination){
         }
     })
 }
+
