@@ -9,29 +9,7 @@ var GlobalData;
 var searchInputEl = document.getElementById("userInput");
 var searchButtonEl = document.getElementById("searchButton");
 
-/*
-We need:
-
-An Event Listener to start a callback
-
-That callback to trigger a search
-
-The search to return results
-
-The results build the data on the page
-
-The search to get logged to search history in Local Storage
-
-The search history to populate the search history list
-
-The search history to have an event listener that can trigger a search.
-
-
-*/
-//event listener
-searchButtonEl.addEventListener("click", startSearch);
-
-
+//begins our search
 function startSearch(event){
     event.preventDefault();
     var userInput = searchInputEl.value.trim();
@@ -42,13 +20,14 @@ function startSearch(event){
     }
     //update our search history
     updateLocalStorage(userInput);
-
+    updateSearchHistoryEl();
     //perform the search
     searchAPI(userInput);
     searchInputEl.value = "";
     
 }
 
+//start our query
 function searchAPI(destination){
     var city = destination;
     var currentDayApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`;
@@ -80,6 +59,7 @@ function searchAPI(destination){
     })
 }
 
+//updates our cards with content
 function populateData (dataObject){
     var dataSet = dataObject;
     //select all spans and loop through them 
@@ -107,6 +87,7 @@ function populateData (dataObject){
     }
 }
 
+//saves events to local storage
 function updateLocalStorage(userInput){
     
     var city = {
@@ -123,3 +104,32 @@ function updateLocalStorage(userInput){
     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 
 }
+
+//fills in the search history
+function updateSearchHistoryEl(){
+    
+    //remove existing list content
+    var searchHistoryEl = document.querySelector("#searchHistory");
+    while(searchHistoryEl.firstChild){
+        searchHistoryEl.removeChild(searchHistoryEl.firstChild)
+    }
+
+    var searchHistoryItems = JSON.parse(localStorage.getItem("searchHistory"));
+    //if we have no search history
+    if(searchHistoryItems === null){
+        return;
+    }
+
+    for(i = 0; i < searchHistoryItems.length; i++){
+        var liEl = document.createElement("li");
+        liEl.innerHTML = searchHistoryItems[i].name;
+        searchHistoryEl.appendChild(liEl);
+    }
+
+}
+
+//event listener
+searchButtonEl.addEventListener("click", startSearch);
+
+//populate our search history
+updateSearchHistoryEl();
