@@ -40,10 +40,13 @@ function startSearch(event){
         alert("You have not input any destination!")
         return;
     }
+    //update our search history
+    updateLocalStorage(userInput);
 
+    //perform the search
     searchAPI(userInput);
-    //update search hstory here
     searchInputEl.value = "";
+    
 }
 
 function searchAPI(destination){
@@ -68,7 +71,6 @@ function searchAPI(destination){
                         populateData(data2);
                     })
                 })
-                //build my populate functions here.
             });
 
         //handle errrors
@@ -80,12 +82,7 @@ function searchAPI(destination){
 
 function populateData (dataObject){
     var dataSet = dataObject;
-
-    //get rid once done
-    GlobalData = dataSet
-    console.log(GlobalData);
-    
-    
+    //select all spans and loop through them 
     var tempSpanEls = document.querySelectorAll(".temp");
     var windSpanEls = document.querySelectorAll(".wind");
     var humiditySpanEls = document.querySelectorAll(".humidity");
@@ -96,6 +93,8 @@ function populateData (dataObject){
     for(var i =  0; i < 6; i++){
         //sort out the dates for the cards
         var headerDate = moment.unix(dataSet.daily[i].dt).format("DD/MM/YY");
+        
+        //add UV index for current day
         if(i === 0){
             uvIndexEl.textContent = dataSet.current.uvi 
         }
@@ -106,4 +105,21 @@ function populateData (dataObject){
         windSpanEls[i].textContent = dataSet.daily[i].wind_speed + "km/h";
         humiditySpanEls[i].textContent = dataSet.daily[i].humidity + "%";
     }
+}
+
+function updateLocalStorage(userInput){
+    
+    var city = {
+        name: userInput
+    };
+
+    var searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
+        if(searchHistory === null){
+            searchHistory = [];
+            searchHistory.push(city);
+        }
+    searchHistory.unshift(city);
+
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+
 }
