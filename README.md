@@ -1,92 +1,36 @@
 # Weather-Dashboard
 
-# 06 Server-Side APIs: Weather Dashboard
+## Description
 
-## Your Task
+[https://cleggatron.github.io/Weather-Dashboard/](https://cleggatron.github.io/Weather-Dashboard/)
 
-Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Your challenge is to build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
+This website will accept user input of a city name, and return the weather data for the day, as well as a look ahead for the following five days. Any user input will be saved in the search history, which is recorded in local storage. These items in the search history can also be clicked which will then trigger the search for these cities. 
 
-Use the [OpenWeather One Call API](https://openweathermap.org/api/one-call-api) to retrieve weather data for cities. Read through the documentation for setup and usage instructions. You will use `localStorage` to store any persistent data. For more information on how to work with the OpenWeather API, refer to the [Full-Stack Blog on how to use API keys](https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys).
+## Installation
 
-## User Story
+As this is a web based application there should be no installation required. The search history will be stored in the browser's local storage however.
 
-```
-AS A traveler
-I WANT to see the weather outlook for multiple cities
-SO THAT I can plan a trip accordingly
-```
+## Usage
 
-## Acceptance Criteria
+![Screenshot of the website in action](./Assets/Screenshot.PNG)
 
-```
-GIVEN a weather dashboard with form inputs
-WHEN I search for a city
-THEN I am presented with current and future conditions for that city and that city is added to the search history
-WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-WHEN I view the UV index
-THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
-WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
-```
+The user can input a city name into the search field. This will trigger 2 searches to data sources from [https://openweathermap.org/](https://openweathermap.org/). This will return the data for the current day, and for future days for that city. The city is saved to a search history. The data for this is held and retrieved from local storage. 
 
-## Mock-Up
+I found that there were limits to the data sources available, where searching by city would not yield all the information, but the other data source had no City Search ability. This has necessitated 2 API calls to retrieve the data for the city name, which are then plugged into the new query. This does mean that the number of API requests that cna be made (60/minute) is halved, if the site saw more usage.
 
-The following image shows the web application's appearance and functionality:
+Items in search history can be clicked on to trigger a search using their values. 
 
-![The weather app includes a search option, a list of cities, and a five-day forecast and current weather conditions for Atlanta.](./Assets/06-server-side-apis-homework-demo.png)
+## Credits
 
-## Grading Requirements
+This website is using the API's provided by Open Weather Map.
+[https://openweathermap.org/](https://openweathermap.org/)
 
-This homework is graded based on the following criteria: 
+## License
 
-### Technical Acceptance Criteria: 40%
+Copyright (c) [2021] [David Clegg]
 
-* Satisfies all of the above acceptance criteria plus the following:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-    * Uses the OpenWeather API to retrieve weather data.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-    * Uses `localStorage` to store persistent data.
-
-### Deployment: 32%
-
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository that contains application code.
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the homework instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality readme file with description, screenshot, and link to deployed application.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a readme describing the project.
-
-- - -
-© 2021 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
