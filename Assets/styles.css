@@ -4,45 +4,37 @@
     font-size: 100%;
 }
 
+body{
+    background-color: lightgray;
+}
+
+header{
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-image: linear-gradient(to right, steelblue, navy );
+    color: white;
+}
+
 h1{
     font-size: 2.5rem;
     text-align: center;
     font-weight: bold;
+    margin: 0;
 }
 
 h2{
     font-size: 2rem;
     text-align: center;
     font-weight: bold;
+    margin: 0;
 }
 
 h3{
     font-size: 1.5rem;
     text-align: center;
     font-weight: bold;
-}
-
-li{
-    list-style: none;
-    text-align: center;
-    font-size:1.25;
-    font-weight: bold;
-}
-
-/* Positioning CSS */
-header{
-    margin-top: 0;
-    margin-bottom: 10px;
-    padding: 10px;
-}
-
-h1, h2, h3{
     margin: 0;
-}
-
-#searchHistorySection{
-    width: 100%;
-    display: flex;
 }
 
 ul{
@@ -55,9 +47,53 @@ ul{
 }
 
 li{
+    list-style: none;
+    text-align: center;
+    font-size:1.25;
+    font-weight: bold;
     width: 50%;
     margin: 10px 0;
     padding: 5px;
+    background-color: slateblue;
+    border-radius: 5px;
+    color: white;
+}
+
+aside{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1%;
+    margin-bottom: 30px;
+    border-right: solid 2px black;
+}
+
+aside h2{
+    margin-bottom: 20px;
+}
+
+aside input{
+    margin-bottom: 10px;
+    width: 95%;
+    height: 30px;
+    padding: 0;
+    border-radius: 5px;
+}
+
+aside button{
+    width: 95%;
+    height: 30px;
+    align-self: center;
+    padding: 0;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+
+/* Positioning CSS */
+
+#searchHistorySection{
+    width: 100%;
+    display: flex;
 }
 
 #mainContent {
@@ -71,6 +107,10 @@ li{
     margin: 0 2.5%;
 }
 
+#searchBox{
+    border-bottom:  solid 2px black;
+}
+
 #dashboard {
     width: 75%;
     margin: 0 2.5%;
@@ -82,6 +122,9 @@ li{
 #cardOne{
     width: 98%;
     padding: 1%;
+    background-color: slateblue;
+    color: white;
+    border-radius: 5px;
 }
 
 #fiveDayCards{
@@ -100,70 +143,10 @@ li{
     width: 16%;
     margin: 1%;
     padding: 1%;
-}
-
-aside{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1%;
-    margin-bottom: 30px;
-}
-
-aside h2{
-    margin-bottom: 20px;
-}
-aside input{
-    margin-bottom: 10px;
-    width: 95%;
-    height: 30px;
-    padding: 0;
-}
-
-aside button{
-    width: 95%;
-    height: 30px;
-    align-self: center;
-    padding: 0;
-    margin-bottom: 30px;
-}
-
-
-/* Visual Stylings */
-body{
-    background-color: lightgray;
-}
-
-header{
-    background-image: linear-gradient(to right, steelblue, navy );
-    color: white;
-}
-
-aside{
-    border-right: solid 2px black;
-}
-
-li{
-    background-color: slateblue;
-    border-radius: 5px;
-    color: white;
-}
-
-
-.card{
     background-color: slateblue;
     color: white;
     border-radius: 5px;
 }
-
-aside input, aside button{
-    border-radius: 5px;
-}
-
-#searchBox{
-    border-bottom:  solid 2px black;
-}
-
 
 /*Stack our subsidiary cards 2x2*/
 @media screen and (max-width: 1000px) {
@@ -171,7 +154,6 @@ aside input, aside button{
         width: 45%;
     }   
 }
-
 
 /*stack cards in a single column. hide the search History as it takes up valuable screen real estate*/
 @media screen and (max-width : 650px) {
