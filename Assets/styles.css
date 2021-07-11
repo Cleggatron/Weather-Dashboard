@@ -164,3 +164,35 @@ aside input, aside button{
     border-bottom:  solid 2px black;
 }
 
+
+/*Stack our subsidiary cards 2x2*/
+@media screen and (max-width: 1000px) {
+     #fiveDayCards .card{
+        width: 45%;
+    }   
+}
+
+
+/*stack cards in a single column. hide the search History as it takes up valuable screen real estate*/
+@media screen and (max-width : 650px) {
+    
+    #mainContent{
+        display: block;
+    }
+
+    #searchBox{
+        width: 95%%;
+    }
+
+    #dashboard{
+        width: 95%
+    }
+    
+    #searchHistorySection{
+        display: none;
+    }
+
+    #fiveDayCards .card{
+        width: 98%;
+    } 
+}
