@@ -66,7 +66,7 @@ function populateData (dataObject){
     for(var i =  0; i < 6; i++){
         //sort out the dates for the cards
         var headerDate = moment.unix(dataSet.daily[i].dt).format("DD/MM/YY");
-        debugger;
+        
         //add UV index for current day
         if(i === 0){
             uvIndexEl.textContent = dataSet.daily[i].uvi 
