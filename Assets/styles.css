@@ -148,6 +148,18 @@ aside button{
     border-radius: 5px;
 }
 
+.lowUV{
+    background-color: green;
+}
+
+.midUV{
+    background-color: rgb(255, 102, 0);
+}
+
+.highUV{
+    background-color: red;
+}
+
 /*Stack our subsidiary cards 2x2*/
 @media screen and (max-width: 1000px) {
      #fiveDayCards .card{

@@ -74,7 +74,14 @@ function populateData (dataObject){
         
         //add UV index for current day
         if(i === 0){
-            uvIndexEl.textContent = dataSet.daily[i].uvi 
+            uvIndexEl.textContent = dataSet.daily[i].uvi;
+            if(dataSet.daily[i].uvi <= 4){
+                uvIndexEl.setAttribute("class", "lowUV");
+            }else if(dataSet.daily[i].uvi < 7){
+                uvIndexEl.setAttribute("class", "midUV");
+            }else{
+                uvIndexEl.setAttribute("class", "highUV");
+            }
         }
 
         //push content to the cards
