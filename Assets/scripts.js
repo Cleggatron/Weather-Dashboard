@@ -1,6 +1,7 @@
 var APIKey = "9848bfb6d8989dcb1be0073be9867f89";
 var searchInputEl = document.getElementById("userInput");
 var searchButtonEl = document.getElementById("searchButton");
+var searchHistoryListEl = document.getElementById("searchHistorySection");
 
 //begins our search
 function startSearch(event){
@@ -23,6 +24,9 @@ function startSearch(event){
 //start our query
 function searchAPI(destination){
     var city = destination;
+    var cityNameEL = document.getElementById("CityName");
+    cityNameEL.textContent = city;
+
     var currentDayApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`;
 
     fetch(currentDayApiUrl)
@@ -60,6 +64,7 @@ function populateData (dataObject){
     var windSpanEls = document.querySelectorAll(".wind");
     var humiditySpanEls = document.querySelectorAll(".humidity");
     var dateHeaderEls = document.querySelectorAll(".date");
+    var weatherIconEls = document.querySelectorAll(".weatherIcon")
     var uvIndexEl = document.querySelector("#uvIndex");
     
 
@@ -77,6 +82,12 @@ function populateData (dataObject){
         tempSpanEls[i].textContent = dataSet.daily[i].temp.day + "°C";
         windSpanEls[i].textContent = dataSet.daily[i].wind_speed + "km/h";
         humiditySpanEls[i].textContent = dataSet.daily[i].humidity + "%";
+
+        var icon = dataSet.daily[i].weather[0].icon;
+        var iconUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+        weatherIconEls[i].setAttribute("src" , iconUrl)
+
+
     }
 }
 
@@ -121,8 +132,27 @@ function updateSearchHistoryEl(){
 
 }
 
-//event listener
+function searchHistoryClick(event){
+    event.preventDefault();
+    
+    var target= event.target;
+
+    console.log("click");
+    console.log(event.target);
+    console.log(target);
+
+    if(target.matches("li")){
+        searchAPI(target.textContent)
+    }
+
+}
+
+//search button event listener
 searchButtonEl.addEventListener("click", startSearch);
+
+//search history event listener
+searchHistoryListEl.addEventListener("click", searchHistoryClick)
+
 
 //populate our search history
 updateSearchHistoryEl();
