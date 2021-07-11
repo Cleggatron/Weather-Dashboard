@@ -125,6 +125,12 @@ aside button{
     background-color: slateblue;
     color: white;
     border-radius: 5px;
+    font-size: 1.25rem;
+}
+
+#uvIndex{
+    border-radius: 5px;
+    padding: 2px 5px;
 }
 
 #fiveDayCards{
